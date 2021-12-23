@@ -127,3 +127,8 @@ pub async fn timeline(req: HttpRequest) -> impl Responder {
       "currentTime": Utc::now().to_rfc3339_opts(SecondsFormat::Secs, true)
     }))
 }
+
+#[get("/api/storefront/v2/catalog")]
+pub async fn catalog() -> HttpResponse {
+    HttpResponse::Ok().json(json!([]))
+}

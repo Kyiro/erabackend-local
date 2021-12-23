@@ -38,6 +38,7 @@ pub fn init_logger() {
         std::env::set_var("RUST_LOG", "debug");
         #[cfg(not(debug_assertions))]
         std::env::set_var("RUST_LOG", "info");
+        //std::env::set_var("RUST_LOG", "trace");
     }
     
     env_logger::init();

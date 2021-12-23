@@ -48,6 +48,7 @@ pub async fn start(port: u16) -> std::io::Result<()> {
         )
         .service(
             web::scope("/fortnite")
+            .service(routes::fortnite::catalog)
             .service(routes::fortnite::enabled_features)
             .service(routes::fortnite::find_player)
             .service(routes::fortnite::fortnite_version)
