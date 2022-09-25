@@ -32,13 +32,20 @@ impl Default for Build {
     }
 }
 
+pub fn new_client() -> reqwest::Client {
+    reqwest::ClientBuilder::new()
+        .no_proxy()
+        .build()
+        .unwrap_or(reqwest::Client::new())
+}
+
 pub fn init_logger() {
     if let Err(_) = std::env::var("RUST_LOG") {
-        #[cfg(debug_assertions)]
-        std::env::set_var("RUST_LOG", "debug");
-        #[cfg(not(debug_assertions))]
-        std::env::set_var("RUST_LOG", "info");
-        //std::env::set_var("RUST_LOG", "trace");
+        // #[cfg(debug_assertions)]
+        // std::env::set_var("RUST_LOG", "debug");
+        // #[cfg(not(debug_assertions))]
+        // std::env::set_var("RUST_LOG", "info");
+        std::env::set_var("RUST_LOG", "trace");
     }
     
     env_logger::init();

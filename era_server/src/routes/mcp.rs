@@ -41,6 +41,11 @@ pub async fn query_profile(
             ))],
             None
         )),
+        "campaign" => HttpResponse::Ok().json(Profile::new(
+            String::from("campaign"),
+            vec![ProfileChanges::Full(FullProfile::new_campaign(account_id))],
+            None
+        )),
         "profile0" => HttpResponse::Ok().json(Profile::new(
             query.profile_id,
             vec![ProfileChanges::Full(FullProfile::new_profile0(account_id))],

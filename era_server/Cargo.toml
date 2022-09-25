@@ -16,3 +16,4 @@ serde_arrays = "0.1.0"
 sha-1 = "0.9.6"
 sha2 = "0.9.5"
 tokio = { version = "1", features = ["macros"] }
+uuid = { version = "0.8", features = ["serde", "v4"] }

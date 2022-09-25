@@ -29,13 +29,14 @@ impl super::FullProfile {
         attr!(attributes, "gift_history" => {});
         
         full.set_vbucks(13500);
+        full.grant_campaign();
         
         full
     }
     
     pub fn set_vbucks(&mut self, amount: i32) {
-        self.profile.items.insert(String::from("Currency:MtxComplimentary"), json!({
-            "templateId": "Currency:MtxComplimentary",
+        self.profile.items.insert(String::from("Currency:MtxGiveaway"), json!({
+            "templateId": "Currency:MtxGiveaway",
             "attributes": {
                 "platform": "Shared"
             },

@@ -6,6 +6,7 @@ use std::collections::HashMap;
 pub mod account;
 pub mod app;
 pub mod athena;
+pub mod campaign;
 pub mod cloudstorage;
 pub mod common_core;
 pub mod common_public;

@@ -1,4 +1,3 @@
-#![recursion_limit = "512"]
 use actix_web::*;
 use std::error::Error as StdError;
 
@@ -14,11 +13,10 @@ pub type Result<T, E = Box<dyn StdError>> = std::result::Result<T, E>;
 pub fn init(port: u16) -> std::io::Result<()> {
     utils::init_logger();
     
-    rt::System::new().block_on(async move {
-        start(port).await
-    })
+    start(port)
 }
 
+#[actix_web::main]
 pub async fn start(port: u16) -> std::io::Result<()> {
     log::info!("Initializing EraAPI");
     let state = web::Data::new(State::new().await);
@@ -72,6 +70,7 @@ pub async fn start(port: u16) -> std::io::Result<()> {
             .service(routes::mcp::set_cosmetic_locker_slot)
             .service(routes::mcp::other)
         )
+        .wrap(middleware::Logger::default())
         .app_data(state.clone())
     })
     .bind(format!("127.0.0.1:{}", port))?

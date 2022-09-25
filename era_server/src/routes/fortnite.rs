@@ -39,12 +39,8 @@ pub async fn find_player() -> impl Responder {
 }
 
 #[get("/api/game/v2/world/info")]
-pub async fn world_info() -> impl Responder {
-    HttpResponse::Ok().json(json!({
-        "theaters": [],
-        "missions": [],
-        "missionAlerts": []
-    }))
+pub async fn world_info(app: web::Data<State>) -> impl Responder {
+    HttpResponse::Ok().json(app.world_info.clone())
 }
 
 #[get("/api/storefront/v2/keychain")]
@@ -129,6 +125,6 @@ pub async fn timeline(req: HttpRequest) -> impl Responder {
 }
 
 #[get("/api/storefront/v2/catalog")]
-pub async fn catalog() -> HttpResponse {
-    HttpResponse::Ok().json(json!([]))
+pub async fn catalog() -> impl Responder {
+    HttpResponse::NotFound()
 }

@@ -9,6 +9,7 @@ use serde_json::json;
 pub async fn oauth_token(app: web::Data<State>) -> Result<impl Responder> {
     let soon = (Utc::now() + chrono::Duration::minutes(2147483647))
         .to_rfc3339_opts(SecondsFormat::Secs, true);
+    let id = uuid::Uuid::new_v4().to_simple().to_string();
     
     Ok(HttpResponse::Ok().json(json!({
         "access_token": "era",
@@ -18,13 +19,13 @@ pub async fn oauth_token(app: web::Data<State>) -> Result<impl Responder> {
         "refresh_token": "erarefresh",
         "refresh_expires": 2147483647,
         "refresh_expires_at": soon,
-        "account_id": "eraaccount",
+        "account_id": id.clone(),
         "client_id": "ec684b8c687f479fadea3cb2ad83f5c6",
         "internal_client": true,
         "client_service": "fortnite",
         "display_name": app.get_config()?.username,
         "app": "fortnite",
-        "in_app_id": "eraaccount"
+        "in_app_id": id
     })))
 }
 

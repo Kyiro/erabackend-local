@@ -45,6 +45,8 @@ impl super::FullProfile {
         attr!(attributes, "packs_granted", 0);
         
         full.set_vbucks(13500);
+        full.grant_campaign();
+        full.fill_in_campaign();
         
         full
     }

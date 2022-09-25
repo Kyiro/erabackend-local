@@ -21,7 +21,8 @@ pub struct State {
     pub game: Value,
     pub keychain: Vec<String>,
     pub status: Value,
-    pub user_path: String
+    pub user_path: String,
+    pub world_info: Value
 }
 
 impl State {
@@ -48,7 +49,8 @@ impl State {
             game: fortnite_game(offline).await,
             keychain: keychain(offline).await,
             status: status(offline).await,
-            user_path
+            user_path,
+            world_info: world_info(offline).await
         }
     }
     
